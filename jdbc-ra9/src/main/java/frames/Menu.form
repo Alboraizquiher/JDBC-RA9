@@ -24,17 +24,15 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="exit" pref="201" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="listEmployee" max="32767" attributes="0"/>
-                      <Component id="actualizarEmpleado" pref="201" max="32767" attributes="0"/>
-                      <Component id="delete" max="32767" attributes="0"/>
-                      <Component id="ingresar" max="32767" attributes="0"/>
-                  </Group>
+              <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="exit" min="-2" pref="201" max="-2" attributes="0"/>
+                  <Component id="listEmployee" min="-2" pref="201" max="-2" attributes="0"/>
+                  <Component id="actualizarEmpleado" min="-2" pref="201" max="-2" attributes="0"/>
+                  <Component id="delete" min="-2" pref="201" max="-2" attributes="0"/>
+                  <Component id="ingresar" min="-2" pref="201" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="59" max="32767" attributes="0"/>
+              <EmptySpace pref="190" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -47,11 +45,11 @@
               <Component id="delete" min="-2" pref="70" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Component id="actualizarEmpleado" min="-2" pref="69" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Component id="listEmployee" min="-2" pref="64" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="exit" min="-2" pref="70" max="-2" attributes="0"/>
-              <EmptySpace pref="35" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
