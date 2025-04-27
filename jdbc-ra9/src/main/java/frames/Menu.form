@@ -67,16 +67,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="ACTUALIZAR EMPLEADO"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actualizarEmpleadoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="delete">
       <Properties>
         <Property name="text" type="java.lang.String" value="BORRAR EMPLEADO"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="listEmployee">
       <Properties>
         <Property name="text" type="java.lang.String" value="LISTAR EMPLEADO"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listEmployeeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="exit">
       <Properties>

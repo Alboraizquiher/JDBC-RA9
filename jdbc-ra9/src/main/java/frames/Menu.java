@@ -44,10 +44,25 @@ public class Menu extends javax.swing.JFrame {
         });
 
         actualizarEmpleado.setText("ACTUALIZAR EMPLEADO");
+        actualizarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarEmpleadoActionPerformed(evt);
+            }
+        });
 
         delete.setText("BORRAR EMPLEADO");
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
 
         listEmployee.setText("LISTAR EMPLEADO");
+        listEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listEmployeeActionPerformed(evt);
+            }
+        });
 
         exit.setText("SALIR");
         exit.addActionListener(new java.awt.event.ActionListener() {
@@ -98,6 +113,24 @@ public class Menu extends javax.swing.JFrame {
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         exit(0);
     }//GEN-LAST:event_exitActionPerformed
+
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        Borrar borrar = new Borrar();
+        borrar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_deleteActionPerformed
+
+    private void actualizarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarEmpleadoActionPerformed
+        Actualizar actualizar = new Actualizar();
+        actualizar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_actualizarEmpleadoActionPerformed
+
+    private void listEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listEmployeeActionPerformed
+      Listar listar = new Listar();
+        listar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_listEmployeeActionPerformed
 
     /**
      * @param args the command line arguments

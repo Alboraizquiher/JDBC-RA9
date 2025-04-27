@@ -4,17 +4,35 @@
  */
 package frames;
 
+import com.mycompany.jdbc.ra9.Empleado;
+import com.mycompany.jdbc.ra9.GestionBDD;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Usuario 1
  */
 public class Actualizar extends javax.swing.JFrame {
-
+GestionBDD db = new GestionBDD();
     /**
      * Creates new form Actualizar
      */
     public Actualizar() {
+       super("Actualizar empleado");
         initComponents();
+        Actualizar.setEditable(false);
+        // Combo box
+        ArrayList<Empleado> employeeList = new ArrayList<>();
+        try {
+            employeeList = db.listarEmpleados();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        for (Empleado empleado : employeeList) {
+            IdEmpleados.addItem(String.valueOf(empleado.getId()));
+        }
     }
 
     /**
@@ -26,26 +44,95 @@ public class Actualizar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        Actualizar = new javax.swing.JTextField();
+        Guardar = new javax.swing.JButton();
+        IdEmpleados = new javax.swing.JComboBox<>();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
+
+        jLabel1.setText("ACTUALIZAR EMPLEADO");
+
+        Guardar.setText("SAVE");
+
+        IdEmpleados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        IdEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IdEmpleadosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 549, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(IdEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 375, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(IdEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(Actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void IdEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdEmpleadosActionPerformed
+           ArrayList<Empleado> employeeList = new ArrayList<>();
+        try {
+            employeeList = db.listarEmpleados();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error while getting the IDs", "WARNING", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int ID = Integer.parseInt((String) IdEmpleados.getSelectedItem());
+        for (Empleado empleado : employeeList) {
+            if (empleado.getId() == ID) {
+                Actualizar.setText(empleado.getId() + "; " + empleado.getNombre() + "; " + empleado.getEdad() + "; "
+                        + empleado.getDepartamento() + "; " + empleado.getSalario());
+                break;
+            }
+        }
+    }//GEN-LAST:event_IdEmpleadosActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        Menu menu = new Menu();
+        menu.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
      */
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Actualizar;
+    private javax.swing.JButton Guardar;
+    private javax.swing.JComboBox<String> IdEmpleados;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

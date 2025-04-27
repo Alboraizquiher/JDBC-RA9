@@ -70,7 +70,7 @@ public class GestionBDD {
     }
 
     public void actualizarEmpleado(Empleado empleado) throws SQLException {
-        String query = "UPDATE Employee SET name = ?, age = ?, department = ?, salary = ? WHERE id = ?";
+        String query = "UPDATE Empleado SET nombre = ?, edad = ?, departamento = ?, salario = ? WHERE id = ?";
         try (PreparedStatement pstmt = con.prepareStatement(query)) {
            pstmt.setString(1, empleado.getNombre());
             pstmt.setInt(2, empleado.getEdad());
@@ -82,7 +82,7 @@ public class GestionBDD {
     }
 
     public void borrarEmpleado(int id) throws SQLException {
-        String query = "DELETE FROM Emppleado WHERE id = ?";
+        String query = "DELETE FROM Empleado WHERE id = ?";
         try (PreparedStatement pstmt = con.prepareStatement(query)) {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
@@ -90,7 +90,7 @@ public class GestionBDD {
     }
 
     public ArrayList<Empleado> listarEmpleados() throws SQLException {
-        String query = "SELECT * FROM Employee";
+        String query = "SELECT * FROM Empleado";
         ArrayList<Empleado> employeeList = new ArrayList<>();
         try (Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
@@ -129,6 +129,33 @@ public class GestionBDD {
             System.out.println("Error al ingresar empleado.");
             e.printStackTrace();
         }
+    }
+        public boolean getEmpleadoId(Empleado employee) throws SQLException {
+        boolean exist = false;
+        String query = "select id from Employee;";
+        Statement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Empleado> employeeList = new ArrayList<>();
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                
+            }
+            for (Empleado employee1 : employeeList) {
+                if (employee1.getId() == employee.getId()) {
+                    exist = true;
+                    break;
+                }
+            }
+            return exist;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            rs.close();
+            stmt.close();
+        }
+        return exist;
     }
 
     public void actualizarEmpleado() {

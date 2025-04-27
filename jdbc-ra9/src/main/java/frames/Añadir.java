@@ -4,12 +4,20 @@
  */
 package frames;
 
+import com.mycompany.jdbc.ra9.Empleado;
+import com.mycompany.jdbc.ra9.GestionBDD;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Usuario 1
  */
 public class Añadir extends javax.swing.JFrame {
+    GestionBDD db = new GestionBDD();
 
+  
     /**
      * Creates new form Añadir
      */
@@ -26,25 +34,207 @@ public class Añadir extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        titulo = new javax.swing.JLabel();
+        id = new javax.swing.JLabel();
+        nombre = new javax.swing.JLabel();
+        edad = new javax.swing.JLabel();
+        salario = new javax.swing.JLabel();
+        depa = new javax.swing.JLabel();
+        Nombre = new javax.swing.JTextField();
+        ID = new javax.swing.JTextField();
+        Edad = new javax.swing.JTextField();
+        Salario = new javax.swing.JTextField();
+        Depa = new javax.swing.JTextField();
+        save = new javax.swing.JButton();
+
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
+
+        titulo.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
+        titulo.setText("                                                      AÑADIR EMPLEADO");
+        titulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        titulo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        titulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        titulo.setVerifyInputWhenFocusTarget(false);
+
+        id.setText("ID");
+
+        nombre.setText("NOMBRE");
+
+        edad.setText("EDAD");
+
+        salario.setText("SALARIO");
+
+        depa.setText("DEPARTAMENTO");
+
+        save.setText("SAVE");
+        save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 549, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(94, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(depa, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edad, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(salario, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(Depa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                                .addComponent(Salario, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Edad, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Nombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(ID, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(save)
+                        .addGap(46, 46, 46))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 375, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(id)
+                        .addGap(9, 9, 9)
+                        .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nombre)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addComponent(edad)
+                        .addGap(9, 9, 9)
+                        .addComponent(Edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(salario)
+                        .addGap(15, 15, 15)
+                        .addComponent(Salario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(depa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Depa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        Menu menu = new Menu();
+        menu.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
+
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+       if (!ID.getText().equalsIgnoreCase("") && !Nombre.getText().equalsIgnoreCase("") 
+    && !Edad.getText().equalsIgnoreCase("") && !Salario.getText().equalsIgnoreCase("") 
+    && !Depa.getText().equalsIgnoreCase("")) {
+
+  
+    int idEmpleado = Integer.parseInt(ID.getText());
+    if (idEmpleado == 0) {
+        JOptionPane.showMessageDialog(this, "El ID debe ser un número positivo.", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    
+    boolean existe = false;
+    try {
+        ArrayList<Empleado> listarEmpleados = db.listarEmpleados();
+        for (Empleado emp : listarEmpleados) {
+            if (emp.getId() == idEmpleado) {
+                existe = true;
+                break;
+            }
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        return;
+    }
+
+    if (!existe) {
+        // Obtener el resto de datos
+        String nombre = Nombre.getText();
+        int edad = Integer.parseInt(Edad.getText());
+        if (edad < 1 || edad > 100) {
+            JOptionPane.showMessageDialog(this, "La edad debe estar entre 1 y 100.", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String departamento = Depa.getText();
+        double salario;
+        try {
+            salario = Double.parseDouble(Salario.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Formato de salario incorrecto (Ejemplo: 1234.56)", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+       
+
+        Empleado nuevoEmpleado = new Empleado(0, nombre, edad, departamento, salario);
+
+        try {
+            db.insertarEmpleado(nuevoEmpleado);
+            JOptionPane.showMessageDialog(this, "Empleado añadido correctamente.", "INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
+
+            
+            Menu menu = new Menu();
+            menu.setVisible(true);
+            this.setVisible(false);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al insertar el empleado.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
+
+    } else {
+        JOptionPane.showMessageDialog(this, "El ID ya está en uso.", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+    }
+
+} else {
+    JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos.", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+}
+
+    }//GEN-LAST:event_saveActionPerformed
+
     /**
      * @param args the command line arguments
      */
-  
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Depa;
+    private javax.swing.JTextField Edad;
+    private javax.swing.JTextField ID;
+    private javax.swing.JTextField Nombre;
+    private javax.swing.JTextField Salario;
+    private javax.swing.JLabel depa;
+    private javax.swing.JLabel edad;
+    private javax.swing.JLabel id;
+    private javax.swing.JLabel nombre;
+    private javax.swing.JLabel salario;
+    private javax.swing.JButton save;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,17 +4,36 @@
  */
 package frames;
 
+import com.mycompany.jdbc.ra9.Empleado;
+import com.mycompany.jdbc.ra9.GestionBDD;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Usuario 1
  */
 public class Borrar extends javax.swing.JFrame {
+    GestionBDD db = new GestionBDD();
 
     /**
      * Creates new form Borrar
      */
     public Borrar() {
+         super("Delete employee");
         initComponents();
+        // Get the ID of the employees
+       IDfrase.setEditable(false);
+        ArrayList<Empleado> employeeList = new ArrayList<>();
+        try {
+            employeeList = db.listarEmpleados();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        for (Empleado empleado : employeeList) {
+            IdEmpleado.addItem(String.valueOf(empleado.getId()));
+        }
     }
 
     /**
@@ -26,21 +45,92 @@ public class Borrar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        IDfrase = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        IdEmpleado = new javax.swing.JComboBox<>();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
+
+        jLabel1.setText("BORRAR EMPLEADO");
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jButton1.setText("ENVIAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        IdEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        IdEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IdEmpleadoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 549, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(IdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(IDfrase, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 375, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(IdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(IDfrase, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jButton1)
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+          Menu menu = new Menu();
+        menu.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+   
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void IdEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdEmpleadoActionPerformed
+        ArrayList<Empleado> employeeList = new ArrayList<>();
+        try {
+            employeeList = db.listarEmpleados();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error while getting the IDs", "WARNING", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int ID = Integer.parseInt((String) IdEmpleado.getSelectedItem());
+        for (Empleado employee : employeeList) {
+            if (employee.getId() == ID) {
+                IDfrase.setText(employee.getId() + "; " + employee.getNombre() + "; " + employee.getEdad() + "; "
+                        + employee.getDepartamento() + "; " + employee.getSalario());
+                break;
+            }
+        }
+    }//GEN-LAST:event_IdEmpleadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -48,5 +138,9 @@ public class Borrar extends javax.swing.JFrame {
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField IDfrase;
+    private javax.swing.JComboBox<String> IdEmpleado;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
